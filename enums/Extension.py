@@ -3,7 +3,7 @@ from enum import Enum
 
 class Extension(Enum):
     PDF = 'pdf'
-    TEXT = 'text'
+    TXT = 'text'
     DOCX = 'word'
     PNG = 'images'
     JPG = 'images'
