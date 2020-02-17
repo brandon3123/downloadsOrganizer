@@ -9,9 +9,10 @@ if __name__ == "__main__":
     arguments = sys.argv
 
     if len(arguments) == 2:
+        directory_to_watch = arguments[1]
         event_handler = DirectoryEventHandler()
         observer = Observer()
-        observer.schedule(event_handler, arguments[1], recursive=True)
+        observer.schedule(event_handler, directory_to_watch, recursive=True)
         observer.start()
 
         try:
