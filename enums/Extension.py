@@ -2,6 +2,9 @@ from aenum import Enum, NoAlias
 
 
 class Extension(Enum, settings=NoAlias):
+    """
+        File extensions handled and there associated folder names.
+    """
     PDF = 'pdf'
     TXT = 'text'
     DOCX = 'word'
@@ -20,4 +23,5 @@ class Extension(Enum, settings=NoAlias):
     JAVA = 'java-app'
     CLASS = 'java-class'
     PYC = 'python-app'
+    XML = 'xml'
     UNKNOWN = 'misc'

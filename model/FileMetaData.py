@@ -40,3 +40,6 @@ class FileMetaData:
     @full_file_path.setter
     def full_file_path(self, full_file_path):
         self._full_file_path = full_file_path
+
+    def extension_directory(self):
+        return self._path + "/" + self._extension.value

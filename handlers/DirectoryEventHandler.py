@@ -6,6 +6,18 @@ from model.FileMetaData import FileMetaData
 
 
 class DirectoryEventHandler(FileSystemEventHandler):
+    """
+    Class to handle events from our observer inside downloadsOrganizer.py.
+    Once an event is fired, we listen for "on_created" events which will then
+    be organized into the following folder structure.
+
+        -Type (pdf)
+            - Date
+                -File
+        -Type (csv)
+            - Date
+                -File
+    """
 
     def on_created(self, event):
         super(DirectoryEventHandler, self).on_created(event)
@@ -17,22 +29,19 @@ def perform_cleanup_for_directory(event):
 
         file = FileMetaData(event)
 
-        if DirectoryUtil.does_directory_exist_for_extension_at_path(file.path, file.extension):
+        if DirectoryUtil.does_directory_exist_in_path(file.path, file.extension.value):
             perform_cleanup_existing_extension_directory(file)
         else:
             perform_cleanup_absent_extension_directory(file)
 
 
 def perform_cleanup_existing_extension_directory(file):
-    extension_directory = file.path + '/' + file.extension.value
-
     today = today_date_string()
 
-    today_directory = extension_directory + '/' + today
+    if not DirectoryUtil.does_directory_exist_in_path(file.extension_directory(), today):
+        DirectoryUtil.create_directory_at_path(file.extension_directory(), today)
 
-    if not DirectoryUtil.does_current_date_directory_exist_in_path(extension_directory):
-        DirectoryUtil.create_directory_at_path(extension_directory, today)
-
+    today_directory = file.extension_directory() + '/' + today
     DirectoryUtil.move_file_to_directory(today_directory, file.full_file_path)
 
 
@@ -42,4 +51,5 @@ def perform_cleanup_absent_extension_directory(file):
 
 
 def today_date_string():
+    """ Returns a string representation of the current date. """
     return str(datetime.date.today())
