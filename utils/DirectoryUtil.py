@@ -27,7 +27,10 @@ class DirectoryUtil:
     @staticmethod
     def get_file_extension(event):
         extension = path.splitext(event)[1][1::]
-        return Extension[extension.upper()]
+        try:
+            return Extension[extension.upper()]
+        except:
+            return Extension.UNKNOWN
 
     @staticmethod
     def get_file_path(event):
