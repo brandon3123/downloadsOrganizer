@@ -3,16 +3,15 @@ import sys
 from watchdog.observers import Observer
 from handlers.DirectoryEventHandler import DirectoryEventHandler
 
-DIRECTORY_TO_WATCH = '/Users/brandon/Downloads/organizer'
 
 if __name__ == "__main__":
 
     arguments = sys.argv
 
-    if len(arguments) == 1:
+    if len(arguments) == 2:
         event_handler = DirectoryEventHandler()
         observer = Observer()
-        observer.schedule(event_handler, DIRECTORY_TO_WATCH, recursive=True)
+        observer.schedule(event_handler, arguments[1], recursive=True)
         observer.start()
 
         try:

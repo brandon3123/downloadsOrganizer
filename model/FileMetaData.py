@@ -43,4 +43,4 @@ class FileMetaData:
         self._full_file_path = full_file_path
 
     def extension_directory(self):
-        return self._path + Constant.FORWARD_SLASH.value + self._extension.value
+        return self.path + Constant.FORWARD_SLASH.value + self.extension.value

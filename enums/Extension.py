@@ -1,7 +1,7 @@
 from aenum import Enum, NoAlias
 
 
-class Extension(Enum, settings=NoAlias):
+class Extension(Enum):
     """
         File extensions handled and there associated folder names.
     """
