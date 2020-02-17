@@ -1,7 +1,7 @@
-from enum import Enum
+from aenum import Enum, NoAlias
 
 
-class Extension(Enum):
+class Extension(Enum, settings=NoAlias):
     PDF = 'pdf'
     TXT = 'text'
     DOCX = 'word'

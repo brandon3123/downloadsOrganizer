@@ -1,9 +1,13 @@
+from utils.DirectoryUtil import DirectoryUtil
+
+
 class FileMetaData:
 
-    def __init__(self, name, extension, path):
-        self.path = path
-        self.name = name
-        self.extension = extension
+    def __init__(self, event):
+        self.path = DirectoryUtil.get_file_path(event.src_path)
+        self.name = DirectoryUtil.get_file_name(event.src_path)
+        self.extension = DirectoryUtil.get_file_extension(event.src_path)
+        self.full_file_path = event.src_path
 
     @property
     def name(self):
@@ -29,11 +33,10 @@ class FileMetaData:
     def path(self, path):
         self._path = path
 
+    @property
     def full_file_path(self):
-        return self._path + '/' + self._name + '.' + self._extension
+        return self._full_file_path
 
-    def name_with_extension(self):
-        return self._name + '.' + self._extension
-
-    def name_with_path(self):
-        return self._path + '/' + self._name
+    @full_file_path.setter
+    def full_file_path(self, full_file_path):
+        self._full_file_path = full_file_path

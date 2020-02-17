@@ -9,22 +9,18 @@ class DirectoryEventHandler(FileSystemEventHandler):
 
     def on_created(self, event):
         super(DirectoryEventHandler, self).on_created(event)
-
-        if not event.is_directory:
-            file_extension = DirectoryUtil.get_file_extension(event.src_path)
-            file_path = DirectoryUtil.get_file_path(event.src_path)
-            file_name = DirectoryUtil.get_file_name(event.src_path)
-
-            file = FileMetaData(file_name, file_extension, file_path)
-
-            perform_cleanup_for_directory(file)
+        perform_cleanup_for_directory(event)
 
 
-def perform_cleanup_for_directory(file):
-    if DirectoryUtil.does_directory_exist_for_extension_at_path(file.path, file.extension):
-        perform_cleanup_existing_extension_directory(file)
-    else:
-        perform_cleanup_absent_extension_directory(file)
+def perform_cleanup_for_directory(event):
+    if not event.is_directory:
+
+        file = FileMetaData(event)
+
+        if DirectoryUtil.does_directory_exist_for_extension_at_path(file.path, file.extension):
+            perform_cleanup_existing_extension_directory(file)
+        else:
+            perform_cleanup_absent_extension_directory(file)
 
 
 def perform_cleanup_existing_extension_directory(file):
@@ -37,7 +33,7 @@ def perform_cleanup_existing_extension_directory(file):
     if not DirectoryUtil.does_current_date_directory_exist_in_path(extension_directory):
         DirectoryUtil.create_directory_at_path(extension_directory, today)
 
-    DirectoryUtil.move_file_to_directory(today_directory, file.full_file_path())
+    DirectoryUtil.move_file_to_directory(today_directory, file.full_file_path)
 
 
 def perform_cleanup_absent_extension_directory(file):
