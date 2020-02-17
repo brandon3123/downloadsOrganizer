@@ -13,7 +13,7 @@ class DirectoryEventHandler(FileSystemEventHandler):
 
 
 def perform_cleanup_for_directory(event):
-    if not event.is_directory:
+    if not event.is_directory and not event.src_path.endswith('DS_Store'):
 
         file = FileMetaData(event)
 
