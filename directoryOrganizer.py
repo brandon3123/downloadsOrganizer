@@ -22,7 +22,7 @@ if __name__ == "__main__":
             observer.stop()
         observer.join()
     else:
-        print("Please supply the full directory path of which to be organized.")
+        print("Please supply the full directory path of which to be organized. Only 1 directory can be specified.")
         sys.exit(0)
 
 
