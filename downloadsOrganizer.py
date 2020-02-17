@@ -1,5 +1,5 @@
 from watchdog.observers import Observer
-from eventhandlers.DirectoryEventHandler import DirectoryEventHandler
+from handlers.DirectoryEventHandler import DirectoryEventHandler
 
 DIRECTORY_TO_WATCH = '/Users/brandon/Downloads/organizer'
 
