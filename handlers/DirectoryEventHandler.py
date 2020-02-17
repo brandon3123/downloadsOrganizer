@@ -3,6 +3,7 @@ import datetime
 from watchdog.events import FileSystemEventHandler
 from utils.DirectoryUtil import DirectoryUtil
 from model.FileMetaData import FileMetaData
+from enums.Constant import Constant
 
 
 class DirectoryEventHandler(FileSystemEventHandler):
@@ -41,7 +42,7 @@ def perform_cleanup_existing_extension_directory(file):
     if not DirectoryUtil.does_directory_exist_in_path(file.extension_directory(), today):
         DirectoryUtil.create_directory_at_path(file.extension_directory(), today)
 
-    today_directory = file.extension_directory() + '/' + today
+    today_directory = file.extension_directory() + Constant.FORWARD_SLASH.value + today
     DirectoryUtil.move_file_to_directory(today_directory, file.full_file_path)
 
 

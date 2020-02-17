@@ -3,15 +3,14 @@ import shutil
 
 from os import path
 from enums.Extension import Extension
-
-FORWARD_SLASH = '/'
+from enums.Constant import Constant
 
 
 class DirectoryUtil:
 
     @staticmethod
     def create_directory_at_path(path, directory_name):
-        os.mkdir(path + FORWARD_SLASH + directory_name)
+        os.mkdir(path + Constant.FORWARD_SLASH.value + directory_name)
 
     @staticmethod
     def move_file_to_directory(directory, file):
@@ -27,13 +26,13 @@ class DirectoryUtil:
 
     @staticmethod
     def get_file_path(event):
-        return event.rsplit(FORWARD_SLASH, 1)[0]
+        return event.rsplit(Constant.FORWARD_SLASH.value, 1)[0]
 
     @staticmethod
     def get_file_name(event):
-        file_name = path.basename(event).rsplit('.')[0]
+        file_name = path.basename(event).rsplit(Constant.DOT.value)[0]
         return file_name
 
     @staticmethod
     def does_directory_exist_in_path(working_directory, directory_name):
-        return path.exists(working_directory + FORWARD_SLASH + directory_name)
+        return path.exists(working_directory + Constant.FORWARD_SLASH.value + directory_name)
