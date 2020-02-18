@@ -24,5 +24,3 @@ if __name__ == "__main__":
     else:
         print("Please supply the full directory path of which to be organized. Only 1 directory can be specified.")
         sys.exit(0)
-
-
