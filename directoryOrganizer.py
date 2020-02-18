@@ -9,6 +9,7 @@ if __name__ == "__main__":
     arguments = sys.argv
 
     if len(arguments) == 2:
+
         directory_to_watch = arguments[1]
         event_handler = DirectoryEventHandler()
         observer = Observer()

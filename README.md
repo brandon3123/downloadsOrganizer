@@ -6,4 +6,4 @@ This project will allow you to keep any directory of your choosing organized by 
 
 To monitor a directory for changes, simply run the **directoryOrganizer.py** file with a command line argument of the directory to monitor.
 
-    python directoryOrganizer.py /Users/you/Downloads
+    python3 directoryOrganizer.py /Users/you/Downloads
