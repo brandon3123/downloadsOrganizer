@@ -27,4 +27,5 @@ class Extension(Enum, settings=NoAlias):
     XML = 'xml'
     SVG = 'vectors'
     CERT = 'certificates'
+    GIF = 'gifs'
     UNKNOWN = 'misc'
