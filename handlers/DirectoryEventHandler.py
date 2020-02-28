@@ -1,4 +1,5 @@
 import datetime
+import time
 
 from watchdog.events import FileSystemEventHandler
 from utils.DirectoryUtil import DirectoryUtil
@@ -21,12 +22,13 @@ class DirectoryEventHandler(FileSystemEventHandler):
     """
 
     def on_created(self, event):
+        time.sleep(5)
         super(DirectoryEventHandler, self).on_created(event)
         perform_cleanup_for_directory(event)
 
 
 def perform_cleanup_for_directory(event):
-    if not event.is_directory and not event.src_path.endswith('DS_Store'):
+    if not event.is_directory and not event.src_path.endswith('DS_Store') and not '.com.google' in event.src_path:
 
         file = FileMetaData(event)
 
